@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Vital Body Spa - Servicios</title>
+    <style>
+        :root {
+            --color-primary: #89B5AF;
+            --color-background: #F0EDE5;
+            --color-text: #2D4356;
+            --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition-smooth: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+            padding-top: 4rem; /* Adjust to match navbar height */
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--color-primary);
+            color: white;
+        }
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        /*links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .close-btn {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+
+            .hamburger {
+                display: flex;
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 1100;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: #89b5af81;
+                padding: 4rem 2rem;
+                flex-direction: column;
+                align-items: center;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            .menu-toggle:checked ~ .nav-links {
+                right: 0;
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                display: block;
+                z-index: 1100;
+            }
+        }
+
+        /* Servicios */
+        #servicios {
+            padding: 2rem 1rem;
+        }
+
+        #servicios h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .service-image-container {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-image:hover {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            flex-grow: 1;
+        }
+
+        .service-title {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        footer p {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Diseño responsivo */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .service-image-container {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo"><?xml version="1.0" encoding="utf-8"?>
+            <svg fill="#ffffff" width="40px" height="40px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M20.787 9.023c-.125.027-1.803.418-3.953 1.774-.323-1.567-1.279-4.501-4.108-7.485L12 2.546l-.726.767C8.435 6.308 7.483 9.25 7.163 10.827 5.005 9.448 3.34 9.052 3.218 9.024L2 8.752V10c0 7.29 3.925 12 10 12 5.981 0 10-4.822 10-12V8.758l-1.213.265zM8.999 12.038c.002-.033.152-3.1 3.001-6.532C14.814 8.906 14.999 12 15 12v.125a18.933 18.933 0 0 0-3.01 3.154 19.877 19.877 0 0 0-2.991-3.113v-.128zM12 20c-5.316 0-7.549-4.196-7.937-8.564 1.655.718 4.616 2.426 7.107 6.123l.841 1.249.825-1.26c2.426-3.708 5.425-5.411 7.096-6.122C19.534 15.654 17.304 20 12 20z" />
+            </svg>
+        </div>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        
+        <ul class="nav-links">
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#footer">Contacto</a></li>
+          <li><a href="" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+    </header>
+
+<main>
+        <section id="servicios" class="container">
+            <h2>Masajes</h2>
+            <section class="grid grid-2">
+                <article class="service-item">
+                    <figure class="service-image-container">
+                        <img src="../img/masaje_relajante.jpg" alt="Masaje relajante" class="service-image">
+                    </figure>
+                    <section class="service-content">
+                        <h3 class="service-title">Masaje relajante</h3>
+                        <p>Ayuda a reducir el estrés y la tensión muscular, utilizando aceites esenciales aromáticos.</p>
+                        <p>Relajación, mejora la circulación</p>
+                    </section>
+                </article>
+                <article class="service-item">
+                    <figure class="service-image-container">
+                        <img src="../img/masaje_tejido.jpg" alt="Masaje de tejido profundo" class="service-image">
+                    </figure>
+                    <section class="service-content">
+                        <h3 class="service-title">Masaje de tejido profundo</h3>
+                        <p>Técnica especializada para aliviar dolores musculares y liberar tensión crónica.</p>
+                        <p>Alivia contracturas, mejora movilidad</p>
+                    </section>
+                </article>
+            </section>
+            <h2>Faciales</h2>
+            <section class="grid grid-2">
+                <article class="service-item">
+                    <figure class="service-image-container">
+                        <img src="../img/limpieza_profunda.jpg" alt="Limpieza facial" class="service-image">
+                    </figure>
+                    <section class="service-content">
+                        <h3 class="service-title">Limpieza facial profunda</h3>
+                        <p>Limpieza intensa para eliminar impurezas y células muertas.</p>
+                        <p>Piel limpia, hidratada y revitalizada</p>
+                    </section>
+                </article>
+                <article class="service-item">
+                    <figure class="service-image-container">
+                        <img src="../img/fancial.jpg" alt="Facial antiedad" class="service-image">
+                    </figure>
+                    <section class="service-content">
+                        <h3 class="service-title">Facial antiedad</h3>
+                        <p>Tratamientos especializados para reducir arrugas y líneas de expresión.</p>
+                        <p>Piel más firme, aspecto rejuvenecido</p>
+                    </section>
+                </article>
+            </section>
+        </section>
+</main>
+
+    <footer id="footer" class="footer">
+        <section class="social-icons">
+            <h4>Síguenos:</h4>
+            <a href="https://facebook.com/usuario" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/usuario" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/usuario" target="_blank"><i class="fab fa-twitter"></i></a>
+        </section>
+        <section class="footer-contact">
+            <h4>Contacto</h4>
+            <p class="footer-detail">Teléfono: 3124567890</p>
+            <p class="footer-detail">Correo: vitalbodyspa@gmail.com</p>
+        </section>
+        <p class="copyright">&copy; 2024 Vital Body Spa</p>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const closeBtn = document.querySelector('.close-btn');
+
+        menuToggle.addEventListener('change', () => {
+            if (menuToggle.checked) {
+                navLinks.style.right = '0';
+            } else {
+                navLinks.style.right = '-100%';
+            }
+        });
+
+    </script>
+</body>
+</html>

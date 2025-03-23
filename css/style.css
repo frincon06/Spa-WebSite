@@ -1,0 +1,517 @@
+/* Variables and Reset */
+:root {
+  --color-primary: #89B5AF;
+  --color-secondary: #96C7C1;
+  --color-accent: #DED9C4;
+  --color-background: #F0EDE5;
+  --color-text: #2D4356;
+  --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition-smooth: all 0.3s ease;
+  --border-radius: 1rem;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+img, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Nav */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* Menu links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.close-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+  }
+
+  .hamburger {
+      display: flex;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1100;
+  }
+
+  .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100vh;
+      background-color: #89b5af91;
+      padding: 4rem 2rem;
+      flex-direction: column;
+      align-items: center;
+      transition: right 0.3s ease;
+      z-index: 1000;
+  }
+
+  .menu-toggle:checked ~ .nav-links {
+      right: 0;
+  }
+
+  .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      display: block;
+      z-index: 1100;
+  }
+}
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  padding-top: 4rem;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backdrop-filter: blur(20px);
+}
+
+.hero-content {
+  padding: 2rem;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-family: 'Natalia';
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+.wave-decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: var(--color-background);
+  clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 100%, 50% 50%);
+}
+
+/* servicios*/
+.services {
+  padding: 4rem 1rem;
+}
+
+.services h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.services-grid {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  color: var(--color-primary);
+}
+
+/* Contact Section */
+.contact {
+  background-color: var(--background-light);
+  padding: 4rem 2rem;
+  font-family: 'Arial', sans-serif;
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--color-primary);
+  font-size: 2.5rem;
+}
+
+.contact-info, .schedule {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h3, .schedule h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+}
+
+.contact-info p, .schedule p {
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info p::before, .schedule p::before {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.icon-location::before { content: '📍'; }
+.icon-phone::before { content: '📞'; }
+.icon-email::before { content: '✉️'; }
+
+.map-container {
+  max-width: 1200px; /* Maximum width for larger screens */
+  width: 90%; /* Responsive width */
+  margin: 0 auto; /* Center the map */
+  grid-column: 1 / -1;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 500px; /* Increased height for better visibility */
+  border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .map-container {
+    width: 95%; /* Slightly wider on smaller screens */
+  }
+
+  .map-container iframe {
+    height: 300px; /* Reduced height for mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-wrapper {
+      grid-template-columns: 1fr;
+  }
+}
+
+/* Components */
+.btn-primary {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-servicios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: white;
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.btn-servicios:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Carousel Section */
+.carousel-container {
+  position: relative;
+  max-width: 800px; /* Set a specific max-width for desktop */
+  width: 90%; /* Responsive width */
+  margin: 0 auto; /* Center the carousel */
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.carousel {
+  display: flex;
+  transition: transform var(--transition-smooth);
+}
+
+.carousel-slide {
+  flex: 0 0 100%; /* Full width of the container */
+  position: relative;
+  margin: 0 auto;
+}
+
+.carousel-slide img {
+  width: 100%;
+  max-width: 100%; /* Ensure image fits within the container */
+  height: 400px; /* Fixed height for consistent look */
+  object-fit: cover; /* Maintain aspect ratio while covering the area */
+  border-radius: var(--border-radius);
+}
+
+.carousel-slide figcaption {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  max-width: 90%; /* Prevent caption from stretching too wide */
+}
+
+/* Arrows */
+button.prev, button.next {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1.5rem; /* Slightly smaller font size */
+  border: none;
+  padding: 0.75rem; /* Reduced padding */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: var(--transition-smooth);
+}
+
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+
+button.prev:hover, button.next:hover {
+  background-color: var(--color-primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 95%;
+  }
+
+  .carousel-slide img {
+    height: 300px; /* Smaller height on smaller screens */
+  }
+
+  .carousel-slide figcaption {
+    font-size: 1rem;
+  }
+}
+
+/* Reserva Section */
+#reserva {
+  background-color: var(--color-background);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+#reserva h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+#reservation-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+}
+
+#reservation-form input, #reservation-form button {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: var(--border-radius);
+  border: 1px solid #ddd;
+}
+
+#reservation-form input:focus, #reservation-form button:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+#reservation-form button {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+#reservation-form button:hover {
+  background-color: var(--color-secondary);
+}
+
+#confirmation-message {
+  margin-top: 1rem;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+
+/* Footer */
+footer {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.social-icons {
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  transition: var(--transition-smooth);
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+/* Media Queries */
+@media (min-width: 768px) {
+
+  .hero h1 {
+      font-size: 3rem;
+  }
+
+  .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+
+  .contact-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+  }
+
+  .map-container {
+      max-width: 800px;
+      margin: 3rem auto 0;
+  }
+
+  .map-container iframe {
+      height: 400px;
+  }
+}
